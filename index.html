@@ -1,0 +1,1190 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Little Bloom | Еко-одяг для немовлят та малюків</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        cream: {
+                            50: '#FDFBF7',
+                            100: '#F7F3EB',
+                            200: '#F5EFEB',
+                            300: '#EAE0D5',
+                        },
+                        sage: {
+                            50: '#F2F5F3',
+                            100: '#E1E8E3',
+                            300: '#B0C2B4',
+                            500: '#8A9A86',
+                            600: '#71826D',
+                            700: '#586755',
+                        },
+                        sand: {
+                            100: '#F4ECE1',
+                            200: '#E7D9C5',
+                            500: '#D4B28C',
+                            600: '#C29B72',
+                        },
+                        terracotta: {
+                            100: '#FDF0EC',
+                            500: '#DD9B82',
+                            600: '#C87B61',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Comfortaa', 'Quicksand', 'Nunito', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #FDFBF7;
+            color: #4A4A4A;
+        }
+        h1, h2, h3, h4, .font-heading {
+            font-family: 'Comfortaa', cursive;
+        }
+        /* Custom scrollbars */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #F7F3EB;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #C29B72;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8A9A86;
+        }
+        .modal-backdrop {
+            background-color: rgba(60, 50, 40, 0.4);
+            backdrop-filter: blur(4px);
+        }
+    </style>
+</head>
+<body class="bg-cream-50 text-gray-700 min-h-screen flex flex-col antialiased">
+
+    <!-- Header Navigation -->
+    <header class="sticky top-0 z-40 bg-cream-50/90 backdrop-blur-md border-b border-cream-200 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Brand Logo -->
+            <a href="#" class="flex items-center space-x-3 group">
+                <div class="w-10 h-10 rounded-full bg-sage-500 text-white flex items-center justify-center shadow-md group-hover:bg-sage-600 transition-colors">
+                    <i data-lucide="sprout" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <span class="font-heading text-xl font-bold text-sage-700 tracking-wide block">Little Bloom</span>
+                    <span class="text-xs text-sand-600 font-medium tracking-wider uppercase block -mt-1">Еко-Одяг для малюків</span>
+                </div>
+            </a>
+
+            <!-- Nav Links -->
+            <nav class="hidden md:flex items-center space-x-8 font-medium text-gray-600 text-sm">
+                <a href="#catalog" class="hover:text-sage-600 transition-colors">Каталог</a>
+                <a href="#sets" class="hover:text-sage-600 transition-colors">Готові набори</a>
+                <a href="#materials" class="hover:text-sage-600 transition-colors">Склад та догляд</a>
+                <a href="#guarantee" class="hover:text-sage-600 transition-colors">Гарантії</a>
+                <a href="#reviews" class="hover:text-sage-600 transition-colors">Відгуки</a>
+            </nav>
+
+            <!-- Actions -->
+            <div class="flex items-center space-x-4">
+                <button onclick="toggleSizeGuideModal(true)" class="hidden sm:flex items-center text-xs font-semibold bg-sand-100 hover:bg-sand-200 text-sand-600 px-3 py-2 rounded-full transition-colors border border-sand-200">
+                    <i data-lucide="ruler" class="w-4 h-4 mr-1.5"></i> Таблиця розмірів
+                </button>
+                
+                <!-- Cart Button -->
+                <button onclick="toggleCartDrawer(true)" class="relative bg-sage-50 hover:bg-sage-100 text-sage-700 p-2.5 rounded-full border border-sage-300 transition-all shadow-sm group">
+                    <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+                    <span id="cart-count" class="absolute -top-1.5 -right-1.5 bg-terracotta-500 text-white text-xs font-bold w-5 h-5 rounded-full flex items-center justify-center shadow-sm">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-gradient-to-b from-cream-100 via-cream-50 to-cream-50 pt-12 pb-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 bg-sage-100 border border-sage-300 text-sage-700 text-xs font-semibold px-3.5 py-1.5 rounded-full">
+                        <i data-lucide="leaf" class="w-4 h-4"></i>
+                        <span>100% Сертифікована органічна бавовна GOTS</span>
+                    </div>
+                    <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-800 leading-tight">
+                        Ніжність та турбота з перших днів життя
+                    </h1>
+                    <p class="text-gray-600 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed">
+                        Екологічний гіпоалергенний одяг для немовлят від 0 до 3 років. М’які натуральні тканини, делікатні шви та природні відтінки для найсолодшого сну та щоденних відкриттів малюка.
+                    </p>
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                        <a href="#catalog" class="w-full sm:w-auto bg-sage-600 hover:bg-sage-700 text-white font-semibold px-7 py-3.5 rounded-2xl shadow-md hover:shadow-lg transition-all text-center flex items-center justify-center space-x-2">
+                            <span>До каталогу</span>
+                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                        <a href="#sets" class="w-full sm:w-auto bg-white hover:bg-sand-100 text-sand-600 font-semibold px-7 py-3.5 rounded-2xl border border-sand-200 shadow-sm transition-all text-center">
+                            Обрати подарунковий набір
+                        </a>
+                    </div>
+                    <!-- Micro Badges -->
+                    <div class="pt-6 grid grid-cols-3 gap-4 border-t border-cream-200 text-center lg:text-left">
+                        <div class="flex flex-col items-center lg:items-start">
+                            <span class="font-bold text-sage-700 text-lg">0+ місяців</span>
+                            <span class="text-xs text-gray-500">Безпечно з народження</span>
+                        </div>
+                        <div class="flex flex-col items-center lg:items-start">
+                            <span class="font-bold text-sage-700 text-lg">GOTS & OEKO</span>
+                            <span class="text-xs text-gray-500">Міжнародні сертифікати</span>
+                        </div>
+                        <div class="flex flex-col items-center lg:items-start">
+                            <span class="font-bold text-sage-700 text-lg">14 Днів</span>
+                            <span class="text-xs text-gray-500">Легкий обмін та повернення</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image Showcase -->
+                <div class="relative">
+                    <div class="w-full h-[420px] sm:h-[480px] rounded-3xl overflow-hidden shadow-2xl relative border-4 border-white">
+                        <img src="images/nabir korobka.jpg" alt="Малюк у еко-одязі" class="w-full h-full object-cover object-center">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                        
+                        <!-- Floating Badge -->
+                        <div class="absolute bottom-6 left-6 right-6 bg-white/95 backdrop-blur-sm p-4 rounded-2xl shadow-lg border border-cream-200 flex items-center justify-between">
+                            <div class="flex items-center space-x-3">
+                                <div class="p-2.5 bg-sand-100 text-sand-600 rounded-xl">
+                                    <i data-lucide="gift" class="w-6 h-6"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-gray-800 text-sm">Сет "Набір для Виписки"</h4>
+                                    <p class="text-xs text-gray-500">Популярний вибір серед молодих батьків</p>
+                                </div>
+                            </div>
+                            <a href="#sets" class="text-xs font-bold text-sage-600 hover:text-sage-700 underline">Детальніше</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Size Guide Section Banner -->
+    <section class="bg-sage-50 py-6 border-y border-sage-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <div class="flex items-center space-x-3 text-center sm:text-left">
+                <div class="p-2.5 bg-sage-500 text-white rounded-full shrink-0">
+                    <i data-lucide="help-circle" class="w-5 h-5"></i>
+                </div>
+                <div>
+                    <h3 class="font-bold text-sage-700 text-sm">Вагаєтесь із вибором розміру?</h3>
+                    <p class="text-xs text-gray-600">Скористайтеся нашою таблицею.</p>
+                </div>
+            </div>
+            <button onclick="toggleSizeGuideModal(true)" class="whitespace-nowrap text-xs font-bold bg-white hover:bg-sage-100 text-sage-700 border border-sage-300 px-5 py-2.5 rounded-xl shadow-sm transition-colors">
+                <i data-lucide="ruler" class="w-4 h-4 inline mr-1"></i> Відкрити таблицю розмірів
+            </button>
+        </div>
+    </section>
+
+    <!-- Product Catalog Section -->
+    <section id="catalog" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-xs font-bold uppercase tracking-wider text-sand-600 bg-sand-100 px-3 py-1 rounded-full">Наш асортимент</span>
+            <h2 class="font-heading text-3xl font-bold text-gray-800 mt-3">Базові товари для вашого малюка</h2>
+            <p class="text-gray-500 text-sm mt-2">Кожна модель створена з врахуванням фізіології немовлят, має делікатні шви та зручні кнопки без нікелю.</p>
+        </div>
+
+        <!-- Catalog Grid -->
+        <div id="product-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Product Cards injected via JavaScript -->
+        </div>
+    </section>
+
+    <!-- Sets & Bundles Section -->
+    <section id="sets" class="py-16 bg-cream-100/80 border-t border-cream-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-wider text-sage-600 bg-sage-100 px-3 py-1 rounded-full">Готові рішення</span>
+                <h2 class="font-heading text-3xl font-bold text-gray-800 mt-3">Готові Подарункові Сети та Бокси</h2>
+                <p class="text-gray-500 text-sm mt-2">Ідеальний подарунок на виписку або повноцінна капсула на перший місяць життя зі знижкою до 15% у наборі.</p>
+            </div>
+
+            <div id="sets-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Bundles injected via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Composition & Care Section -->
+    <section id="materials" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-sm border border-cream-200">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <span class="text-xs font-bold uppercase tracking-wider text-sand-600 bg-sand-100 px-3 py-1 rounded-full">Еко-філософія</span>
+                    <h2 class="font-heading text-3xl font-bold text-gray-800 mt-3 mb-6">Склад тканин та правильний догляд</h2>
+                    <p class="text-gray-600 text-sm leading-relaxed mb-6">
+                        Ми обираємо виключно натуральні матеріали, які не викликають алергії та забезпечують природний термобаланс ніжної шкіри немовляти.
+                    </p>
+
+                    <div class="space-y-4">
+                        <div class="flex items-start space-x-4 p-3 rounded-2xl bg-cream-50">
+                            <div class="p-2.5 bg-sage-100 text-sage-700 rounded-xl shrink-0">
+                                <i data-lucide="check-circle-2" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm">100% Органічна бавовна GOTS</h4>
+                                <p class="text-xs text-gray-500">Вирощена без пестицидів та хімічних добрив. Дуже м'яка та міцна.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4 p-3 rounded-2xl bg-cream-50">
+                            <div class="p-2.5 bg-sage-100 text-sage-700 rounded-xl shrink-0">
+                                <i data-lucide="wind" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm">Багатошаровий Дихаючий Муслін</h4>
+                                <p class="text-xs text-gray-500">Ідеальний для спекотних днів та ніжних пелюшок. Ідеально вбирає вологу.</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4 p-3 rounded-2xl bg-cream-50">
+                            <div class="p-2.5 bg-sage-100 text-sage-700 rounded-xl shrink-0">
+                                <i data-lucide="heart-handshake" class="w-5 h-5"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 text-sm">Вовна Мериноса Суперфайн</h4>
+                                <p class="text-xs text-gray-500">Преміальна в'язка для пінеток та чепчиків. Зберігає тепло та не колеться.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Care Tips Box -->
+                <div class="bg-cream-100 rounded-2xl p-6 border border-cream-200">
+                    <h3 class="font-heading font-bold text-gray-800 text-lg mb-4 flex items-center">
+                        <i data-lucide="sparkles" class="w-5 h-5 text-sand-600 mr-2"></i> Поради з прання та догляду
+                    </h3>
+                    <ul class="space-y-3 text-xs text-gray-600">
+                        <li class="flex items-center space-x-2">
+                            <i data-lucide="droplet" class="w-4 h-4 text-sage-600"></i>
+                            <span>Прання при температурі не вище 30°C у делікатному режимі.</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i data-lucide="shield-alert" class="w-4 h-4 text-sage-600"></i>
+                            <span>Використовуйте тільки рідкі гіпоалергенні дитячі гелі без фосфатів.</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i data-lucide="sun" class="w-4 h-4 text-sage-600"></i>
+                            <span>Сушіть у розправленому вигляді подалі від прямих сонячних променів.</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <i data-lucide="flame" class="w-4 h-4 text-sage-600"></i>
+                            <span>Прасування з вивороту при помірній температурі або відпарювання.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee & Return Section -->
+    <section id="guarantee" class="py-16 bg-sage-50/60 border-y border-sage-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <span class="text-xs font-bold uppercase tracking-wider text-sage-600 bg-sage-100 px-3 py-1 rounded-full">Турбота та безпека</span>
+                <h2 class="font-heading text-3xl font-bold text-gray-800 mt-3">Гарантія, обмін та повернення</h2>
+                <p class="text-gray-500 text-sm mt-2">Ми розуміємо, як важливо підібрати правильний розмір для малюка, тому робимо процес обміну максимально зручним.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-white p-6 rounded-2xl border border-cream-200 shadow-sm text-center">
+                    <div class="w-12 h-12 bg-sand-100 text-sand-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="rotate-ccw" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 text-base mb-2">14 днів на повернення</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">Якщо товар не підійшов за розміром чи кольором, ви можете повернути або обміняти його протягом двох тижнів.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-cream-200 shadow-sm text-center">
+                    <div class="w-12 h-12 bg-sage-100 text-sage-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="truck" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 text-base mb-2">Швидка доставка</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">Відправка у день замовлення або наступного ранку. Доставка Новою Поштою по всій Україні.</p>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-cream-200 shadow-sm text-center">
+                    <div class="w-12 h-12 bg-terracotta-100 text-terracotta-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i data-lucide="shield-check" class="w-6 h-6"></i>
+                    </div>
+                    <h3 class="font-bold text-gray-800 text-base mb-2">Контроль якості</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">Кожен шов та кнопочка перевіряються вручну перед пакуванням у наші фірмові коробки.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section with Photos -->
+    <section id="reviews" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-2xl mx-auto mb-12">
+            <span class="text-xs font-bold uppercase tracking-wider text-sand-600 bg-sand-100 px-3 py-1 rounded-full">Щасливі батьки</span>
+            <h2 class="font-heading text-3xl font-bold text-gray-800 mt-3">Відгуки наших матусь та татусів</h2>
+            <p class="text-gray-500 text-sm mt-2">Реальні враження від покупок у Little Bloom.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Review 1 -->
+            <div class="bg-white rounded-3xl p-6 border border-cream-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-1 text-amber-400 mb-3">
+                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                    </div>
+                    <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                        "Замовляла Набір для виписки. Якість неймовірна! Бавовна настільки м'якенька, що не хочеться випускати з рук. Донечці дуже комфортно, шви надзвичайно делікатні."
+                    </p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-sm">Олена М.</h4>
+                            <span class="text-[10px] text-gray-400">Мама Софійки (2 місяці)</span>
+                        </div>
+                        <span class="text-[10px] bg-sage-100 text-sage-700 px-2 py-1 rounded-full font-semibold">Перевірений покупка</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 2 -->
+            <div class="bg-white rounded-3xl p-6 border border-cream-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-1 text-amber-400 mb-3">
+                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                    </div>
+                    <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                        "Муслінові пісочники — це просто порятунок на літо! Вже випрала разів 10, а колір та форма залишилися як нові. Дякую за швидку доставку!"
+                    </p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-sm">Ірина та Артем</h4>
+                            <span class="text-[10px] text-gray-400">Батьки Марка (8 місяців)</span>
+                        </div>
+                        <span class="text-[10px] bg-sage-100 text-sage-700 px-2 py-1 rounded-full font-semibold">Перевірений покупка</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Review 3 -->
+            <div class="bg-white rounded-3xl p-6 border border-cream-200 shadow-sm flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center space-x-1 text-amber-400 mb-3">
+                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                        <i data-lucide="star" class="w-4 h-4 fill-amber-400"></i>
+                    </div>
+                    <p class="text-xs text-gray-600 leading-relaxed mb-4">
+                        "В'язані пінетки з мериноса перевершили очікування. Ніжки нашого малюка були завжди тепленькі. Рекомендуємо!"
+                    </p>
+                </div>
+                <div>
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-sm">Вікторія К.</h4>
+                            <span class="text-[10px] text-gray-400">Мама Матвійка (5 місяців)</span>
+                        </div>
+                        <span class="text-[10px] bg-sage-100 text-sage-700 px-2 py-1 rounded-full font-semibold">Перевірений покупка</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-cream-200 border-t border-cream-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-3">
+                <div class="w-8 h-8 rounded-full bg-sage-500 text-white flex items-center justify-center">
+                    <i data-lucide="sprout" class="w-5 h-5"></i>
+                </div>
+                <span class="font-heading font-bold text-sage-700 text-lg">Little Bloom</span>
+            </div>
+            <p class="text-xs text-gray-500 text-center">© 2026 Little Bloom. Всі права захищено. Екологічний одяг для найменших.</p>
+            <div class="flex items-center space-x-4 text-xs text-gray-600">
+                <a href="#catalog" class="hover:underline">Каталог</a>
+                <a href="#materials" class="hover:underline">Матеріали</a>
+                <a href="#guarantee" class="hover:underline">Гарантії</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Shopping Cart Drawer (Slide-Over) -->
+    <div id="cart-drawer" class="fixed inset-0 z-50 hidden transition-opacity duration-300">
+        <div class="absolute inset-0 modal-backdrop" onclick="toggleCartDrawer(false)"></div>
+        <div class="absolute inset-y-0 right-0 max-w-full flex pl-10">
+            <div class="w-screen max-w-md bg-white shadow-2xl flex flex-col">
+                <!-- Cart Header -->
+                <div class="p-6 bg-cream-50 border-b border-cream-200 flex items-center justify-between">
+                    <div class="flex items-center space-x-2">
+                        <i data-lucide="shopping-bag" class="w-5 h-5 text-sage-600"></i>
+                        <h3 class="font-heading font-bold text-gray-800 text-lg">Кошик замовлень</h3>
+                    </div>
+                    <button onclick="toggleCartDrawer(false)" class="p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-cream-100 transition-colors">
+                        <i data-lucide="x" class="w-5 h-5"></i>
+                    </button>
+                </div>
+
+                <!-- Cart Items List -->
+                <div id="cart-items-container" class="flex-1 overflow-y-auto p-6 space-y-4">
+                    <!-- Dynamic Cart Content -->
+                </div>
+
+                <!-- Cart Footer / Total -->
+                <div class="p-6 bg-cream-50 border-t border-cream-200 space-y-4">
+                    <div class="flex items-center justify-between text-sm">
+                        <span class="text-gray-500 font-medium">Разом до сплати:</span>
+                        <span id="cart-total-price" class="font-heading font-bold text-xl text-sage-700">0 грн</span>
+                    </div>
+                    <button onclick="openCheckoutModal()" id="checkout-btn" class="w-full bg-sage-600 hover:bg-sage-700 disabled:bg-gray-300 text-white font-semibold py-3.5 rounded-2xl shadow-md transition-all flex items-center justify-center space-x-2">
+                        <span>Оформити замовлення</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Size Guide Modal -->
+    <div id="size-guide-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 modal-backdrop" onclick="toggleSizeGuideModal(false)"></div>
+        <div class="relative bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl z-10 border border-cream-200 max-h-[90vh] overflow-y-auto">
+            <button onclick="toggleSizeGuideModal(false)" class="absolute top-5 right-5 p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-cream-100">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div class="flex items-center space-x-3 mb-6">
+                <div class="p-2.5 bg-sand-100 text-sand-600 rounded-2xl">
+                    <i data-lucide="ruler" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="font-heading font-bold text-xl text-gray-800">Таблиця розмірів одягу</h3>
+                    <p class="text-xs text-gray-500">Орієнтуйтеся першочергово на зріст вашої дитини</p>
+                </div>
+            </div>
+
+            <!-- Size Chart Table -->
+            <div class="overflow-x-auto rounded-2xl border border-cream-200">
+                <table class="w-full text-xs text-left text-gray-600">
+                    <thead class="bg-cream-100 text-gray-700 font-bold uppercase text-[10px] tracking-wider">
+                        <tr>
+                            <th class="p-3">Розмір (Зріст)</th>
+                            <th class="p-3">Вік малюка</th>
+                            <th class="p-3">Об'єм грудей</th>
+                            <th class="p-3">Об'єм стегон</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-cream-200">
+                        <tr class="hover:bg-cream-50">
+                            <td class="p-3 font-bold text-sage-700">56 см</td>
+                            <td class="p-3">0 – 1 місяць</td>
+                            <td class="p-3">38 – 40 см</td>
+                            <td class="p-3">40 – 42 см</td>
+                        </tr>
+                        <tr class="hover:bg-cream-50">
+                            <td class="p-3 font-bold text-sage-700">62 см</td>
+                            <td class="p-3">1 – 3 місяці</td>
+                            <td class="p-3">41 – 43 см</td>
+                            <td class="p-3">43 – 45 см</td>
+                        </tr>
+                        <tr class="hover:bg-cream-50">
+                            <td class="p-3 font-bold text-sage-700">68 см</td>
+                            <td class="p-3">3 – 6 місяців</td>
+                            <td class="p-3">44 – 46 см</td>
+                            <td class="p-3">46 – 48 см</td>
+                        </tr>
+                        <tr class="hover:bg-cream-50">
+                            <td class="p-3 font-bold text-sage-700">74 см</td>
+                            <td class="p-3">6 – 9 місяців</td>
+                            <td class="p-3">47 – 49 см</td>
+                            <td class="p-3">49 – 51 см</td>
+                        </tr>
+                        <tr class="hover:bg-cream-50">
+                            <td class="p-3 font-bold text-sage-700">80 см</td>
+                            <td class="p-3">9 – 12 місяців</td>
+                            <td class="p-3">50 – 51 см</td>
+                            <td class="p-3">52 – 53 см</td>
+                        </tr>
+                        <tr class="hover:bg-cream-50">
+                            <td class="p-3 font-bold text-sage-700">86 см</td>
+                            <td class="p-3">12 – 18 місяців</td>
+                            <td class="p-3">52 – 53 см</td>
+                            <td class="p-3">54 – 55 см</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="mt-6 p-4 bg-sand-100/60 rounded-2xl text-xs text-sand-600 flex items-start space-x-2">
+                <i data-lucide="info" class="w-4 h-4 shrink-0 mt-0.5"></i>
+                <p><strong>Порада:</strong> Якщо параметри дитини знаходяться між двома розмірами, рекомендуємо обирати більший розмір для вільного руху.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 modal-backdrop" onclick="toggleCheckoutModal(false)"></div>
+        <div class="relative bg-white rounded-3xl max-w-2xl w-full p-6 sm:p-8 shadow-2xl z-10 border border-cream-200 max-h-[90vh] overflow-y-auto">
+            <button onclick="toggleCheckoutModal(false)" class="absolute top-5 right-5 p-2 text-gray-400 hover:text-gray-600 rounded-full hover:bg-cream-100">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+
+            <div class="flex items-center space-x-3 mb-6">
+                <div class="p-2.5 bg-sage-100 text-sage-700 rounded-2xl">
+                    <i data-lucide="clipboard-check" class="w-6 h-6"></i>
+                </div>
+                <div>
+                    <h3 class="font-heading font-bold text-xl text-gray-800">Оформлення замовлення</h3>
+                    <p class="text-xs text-gray-500">Заповніть дані для доставки вашого пакунка</p>
+                </div>
+            </div>
+
+            <!-- Order Items Summary Box -->
+            <div id="checkout-summary-box" class="mb-6 p-4 bg-cream-50 rounded-2xl border border-cream-200 text-xs">
+                <!-- Injected via JS -->
+            </div>
+
+            <!-- Checkout Form -->
+            <form id="checkout-form" novalidate onsubmit="handleCheckoutSubmit(event)" class="space-y-4">
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Ім'я *</label>
+                        <input type="text" name="firstName" required class="w-full px-4 py-2.5 text-xs rounded-xl border border-cream-300 focus:outline-none focus:ring-2 focus:ring-sage-500 bg-cream-50/50" placeholder="Олена">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Прізвище *</label>
+                        <input type="text" name="lastName" required class="w-full px-4 py-2.5 text-xs rounded-xl border border-cream-300 focus:outline-none focus:ring-2 focus:ring-sage-500 bg-cream-50/50" placeholder="Мельник">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Телефон *</label>
+                        <input type="tel" id="phone-input" name="phone" required inputmode="tel" autocomplete="tel" maxlength="19" class="w-full px-4 py-2.5 text-xs rounded-xl border border-cream-300 focus:outline-none focus:ring-2 focus:ring-sage-500 bg-cream-50/50" placeholder="+380 67 123 45 67">
+                        <p id="phone-error" class="hidden text-[11px] text-red-600 mt-1">Введіть номер у форматі +380XXXXXXXXX (наприклад, +380671234567).</p>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Email *</label>
+                        <input type="email" id="email-input" name="email" required inputmode="email" autocomplete="email" class="w-full px-4 py-2.5 text-xs rounded-xl border border-cream-300 focus:outline-none focus:ring-2 focus:ring-sage-500 bg-cream-50/50" placeholder="mommy@example.com">
+                        <p id="email-error" class="hidden text-[11px] text-red-600 mt-1">Введіть коректну електронну пошту (наприклад, mommy@example.com).</p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Місто доставки *</label>
+                        <input type="text" name="city" required class="w-full px-4 py-2.5 text-xs rounded-xl border border-cream-300 focus:outline-none focus:ring-2 focus:ring-sage-500 bg-cream-50/50" placeholder="Київ">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-gray-700 mb-1">Спосіб доставки *</label>
+                        <select name="deliveryMethod" required class="w-full px-4 py-2.5 text-xs rounded-xl border border-cream-300 focus:outline-none focus:ring-2 focus:ring-sage-500 bg-cream-50/50">
+                            <option value="Нова Пошта (Відділення)">Нова Пошта (Відділення)</option>
+                            <option value="Нова Пошта (Поштомат)">Нова Пошта (Поштомат)</option>
+                            <option value="Кур'єр Нової Пошти">Кур'єр Нової Пошти</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Номер відділення / Поштомату / Адреса *</label>
+                    <input type="text" name="addressBranch" required class="w-full px-4 py-2.5 text-xs rounded-xl border border-cream-300 focus:outline-none focus:ring-2 focus:ring-sage-500 bg-cream-50/50" placeholder="Відділення №12 або вул. Хрещатик 15">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Спосіб оплати *</label>
+                    <select name="paymentMethod" required class="w-full px-4 py-2.5 text-xs rounded-xl border border-cream-300 focus:outline-none focus:ring-2 focus:ring-sage-500 bg-cream-50/50">
+                        <option value="Оплата при отриманні (Накладений платіж)">Оплата при отриманні (Накладений платіж)</option>
+                        <option value="Оплата карткою на сайті">Оплата карткою на сайті</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Коментар до замовлення</label>
+                    <textarea name="comment" rows="2" class="w-full px-4 py-2.5 text-xs rounded-xl border border-cream-300 focus:outline-none focus:ring-2 focus:ring-sage-500 bg-cream-50/50" placeholder="Уточнення щодо часу або пакування..."></textarea>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" id="submit-order-btn" class="w-full bg-sage-600 hover:bg-sage-700 text-white font-semibold py-3.5 rounded-2xl shadow-md transition-all flex items-center justify-center space-x-2 mt-4">
+                    <span>Підтвердити замовлення</span>
+                    <i data-lucide="check" class="w-4 h-4"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Order Success / Status Modal -->
+    <div id="status-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <div class="absolute inset-0 modal-backdrop"></div>
+        <div class="relative bg-white rounded-3xl max-w-md w-full p-8 shadow-2xl z-10 border border-cream-200 text-center">
+            <div id="status-icon-container" class="w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center">
+                <!-- Icon via JS -->
+            </div>
+            <h3 id="status-title" class="font-heading font-bold text-xl text-gray-800 mb-2"></h3>
+            <p id="status-message" class="text-xs text-gray-600 leading-relaxed mb-6"></p>
+            <button onclick="toggleStatusModal(false)" class="w-full bg-sage-600 hover:bg-sage-700 text-white font-semibold py-3 rounded-xl transition-all text-xs">
+                Зрозуміло
+            </button>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script>
+        // Webhook URL
+        const WEBHOOK_URL = 'https://danit-n8n.duckdns.org/webhook/8e979986-38af-40dc-a565-3ae558169885';
+
+        // Product Catalog Data
+        const PRODUCTS = [
+            {
+                id: 'prod-1',
+                name: 'Боді з органічної бавовни',
+                category: 'Боді',
+                price: 200,
+                image: 'bodi dovg.jpg',
+                description: 'Боді у рубчик з довгим рукавом та зручними застібками-кнопками. 100% органічна бавовна.',
+                sizes: ['56 см', '62 см', '68 см', '74 см', '80 см', '86 см'],
+                defaultSize: '62 см'
+            },
+            {
+                id: 'prod-2',
+                name: 'Чоловічок з закритими ніжками',
+                category: 'Чоловічки',
+                price: 220,
+                image: 'sleep.jpg',
+                description: 'Затишний сліп для сну з делікатними внутрішніми швами.',
+                sizes: ['56 см', '62 см', '68 см', '74 см'],
+                defaultSize: '62 см'
+            },
+            {
+                id: 'prod-3',
+                name: 'Літній мусліновий пісочник (Сет 2 шт.)',
+                category: 'Пісочники',
+                price: 480,
+                image: 'muslin romp.jpg',
+                description: 'Легенький дихаючий пісочник з мусліну для найспекотніших днів.',
+                sizes: ['62 см', '68 см', '74 см', '80 см', '86 см'],
+                defaultSize: '68 см'
+            },
+            {
+                id: 'prod-4',
+                name: 'Муслінова пелюшка (Сет 4 шт.)',
+                category: 'Пелюшки',
+                price: 520,
+                image: 'pelush.jpg',
+                description: 'Ніжні пелюшки розміром 100x100 см.',
+                sizes: ['Універсальний (100x100)'],
+                defaultSize: 'Універсальний (100x100)'
+            },
+            {
+                id: 'prod-5',
+                name: 'М\'який чепчик на зав\'язках',
+                category: 'Чепчики',
+                price: 150,
+                image: 'shapoc.jpg',
+                description: 'М\'який чепчик дбайливо захищає голівку та вушка малюка.',
+                sizes: ['56 см', '62 см', '68 см'],
+                defaultSize: '56 см'
+            },
+            {
+                id: 'prod-6',
+                name: 'В\'язані пінетки з вовни мериноса',
+                category: 'Пінетки',
+                price: 520,
+                image: 'chepch.jpg',
+                description: 'Ручна в\'язка з м\'якої вовни мериноса. Зберігають природне тепло малюка.',
+                sizes: ['0-6 міс', '6-12 міс'],
+                defaultSize: '0-6 міс'
+            }
+        ];
+
+        // Ready-made Bundles / Sets Data
+        const BUNDLES = [
+            {
+                id: 'set-1',
+                name: 'Набір для виписки "Перший День"',
+                price: 1290,
+                oldPrice: 1460,
+                image: 'nabir korobka.jpg',
+                includes: ['Чоловічок з бавовни (62 см)', 'Шапочка', 'В\'язані пінетки', 'Подарункова коробка'],
+                sizes: ['56 см (0-1 міс)', '62 см (1-3 міс)'],
+                defaultSize: '56 см (0-1 міс)'
+            },
+            {
+                id: 'set-2',
+                name: 'Сет "Перший Місяць Малюка"',
+                price: 1650,
+                oldPrice: 1890,
+                image: 'ershi.jpg',
+                includes: ['Чоловічок з бавовни', 'В\'язані пінетки', 'Чепчик'],
+                sizes: ['56 см', '62 см', '68 см'],
+                defaultSize: '62 см'
+            },
+            {
+                id: 'set-3',
+                name: 'Літній капсульний бокс',
+                price: 1150,
+                oldPrice: 1300,
+                image: 'lito.jpg',
+                includes: ['Мусліновий боді', 'Літній капелюшок', 'Муслінова пелюшка'],
+                sizes: ['62 см', '68 см', '74 см', '80 см'],
+                defaultSize: '68 см'
+            }
+        ];
+
+        // State Store
+        let cart = [];
+        let selectedProductSizes = {};
+
+        // Initialization
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCatalog();
+            renderBundles();
+            updateCartUI();
+            lucide.createIcons();
+        });
+
+        // Render Product Catalog
+        function renderCatalog() {
+            const container = document.getElementById('product-grid');
+            container.innerHTML = PRODUCTS.map(prod => {
+                const currentSize = selectedProductSizes[prod.id] || prod.defaultSize;
+                return `
+                    <div class="bg-white rounded-3xl overflow-hidden border border-cream-200 shadow-sm hover:shadow-md transition-all flex flex-col justify-between group">
+                        <div>
+                            <div class="relative h-64 overflow-hidden bg-cream-100">
+                                <img src="${prod.image}" alt="${prod.name}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                                <span class="absolute top-4 left-4 bg-white/90 backdrop-blur-sm text-sage-700 text-[10px] font-bold px-3 py-1 rounded-full border border-cream-200 uppercase tracking-wider">
+                                    ${prod.category}
+                                </span>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-heading font-bold text-gray-800 text-lg mb-1">${prod.name}</h3>
+                                <p class="text-xs text-gray-500 leading-relaxed mb-4">${prod.description}</p>
+                                
+                                <!-- Size Picker -->
+                                <div class="mb-4">
+                                    <div class="flex items-center justify-between mb-1.5">
+                                        <span class="text-[11px] font-bold text-gray-700">Оберіть розмір:</span>
+                                        <button onclick="toggleSizeGuideModal(true)" class="text-[10px] font-semibold text-sand-600 hover:underline flex items-center">
+                                            <i data-lucide="ruler" class="w-3 h-3 mr-1"></i> Таблиця
+                                        </button>
+                                    </div>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        ${prod.sizes.map(sz => `
+                                            <button onclick="setProductSize('${prod.id}', '${sz}')" class="px-2.5 py-1 text-xs rounded-xl border font-semibold transition-all ${currentSize === sz ? 'bg-sage-600 text-white border-sage-600 shadow-sm' : 'bg-cream-50 text-gray-600 border-cream-300 hover:border-sage-400'}">
+                                                ${sz}
+                                            </button>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="px-6 pb-6 pt-2 border-t border-cream-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-xs text-gray-400 block">Ціна:</span>
+                                <span class="font-heading font-bold text-xl text-sage-700">${prod.price} грн</span>
+                            </div>
+                            <button onclick="addToCart('${prod.id}', 'product')" class="bg-sage-600 hover:bg-sage-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all shadow-sm flex items-center space-x-1.5 active:scale-95">
+                                <i data-lucide="plus" class="w-4 h-4"></i>
+                                <span>В кошик</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            lucide.createIcons();
+        }
+
+        // Render Bundles
+        function renderBundles() {
+            const container = document.getElementById('sets-grid');
+            container.innerHTML = BUNDLES.map(bundle => {
+                const currentSize = selectedProductSizes[bundle.id] || bundle.defaultSize;
+                return `
+                    <div class="bg-white rounded-3xl overflow-hidden border-2 border-sand-200 shadow-md flex flex-col justify-between relative">
+                        <span class="absolute top-4 right-4 z-10 bg-terracotta-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">
+                            Вигода до -15%
+                        </span>
+                        <div>
+                            <div class="relative h-56 overflow-hidden bg-cream-100">
+                                <img src="${bundle.image}" alt="${bundle.name}" class="w-full h-full object-cover">
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-heading font-bold text-gray-800 text-lg mb-2">${bundle.name}</h3>
+                                <p class="text-xs font-semibold text-sand-600 mb-2">Що входить у сет:</p>
+                                <ul class="space-y-1 mb-4 text-xs text-gray-600">
+                                    ${bundle.includes.map(inc => `<li class="flex items-center"><i data-lucide="check" class="w-3.5 h-3.5 text-sage-600 mr-1.5"></i> ${inc}</li>`).join('')}
+                                </ul>
+
+                                <!-- Bundle Size Selector -->
+                                <div class="mb-2">
+                                    <span class="text-[11px] font-bold text-gray-700 block mb-1">Оберіть розмір комплекту:</span>
+                                    <div class="flex flex-wrap gap-1.5">
+                                        ${bundle.sizes.map(sz => `
+                                            <button onclick="setProductSize('${bundle.id}', '${sz}')" class="px-2.5 py-1 text-xs rounded-xl border font-semibold transition-all ${currentSize === sz ? 'bg-sand-600 text-white border-sand-600 shadow-sm' : 'bg-cream-50 text-gray-600 border-cream-300 hover:border-sand-400'}">
+                                                ${sz}
+                                            </button>
+                                        `).join('')}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="px-6 pb-6 pt-2 border-t border-cream-100 flex items-center justify-between">
+                            <div>
+                                <div class="flex items-center space-x-2">
+                                    <span class="font-heading font-bold text-xl text-sage-700">${bundle.price} грн</span>
+                                    <span class="text-xs text-gray-400 line-through">${bundle.oldPrice} грн</span>
+                                </div>
+                            </div>
+                            <button onclick="addToCart('${bundle.id}', 'bundle')" class="bg-sand-600 hover:bg-sand-700 text-white text-xs font-bold px-4 py-2.5 rounded-xl transition-all shadow-sm flex items-center space-x-1.5 active:scale-95">
+                                <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                                <span>Купити сет</span>
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            lucide.createIcons();
+        }
+
+        // Set Size State
+        function setProductSize(id, size) {
+            selectedProductSizes[id] = size;
+            renderCatalog();
+            renderBundles();
+        }
+
+        // Add Item to Cart
+        function addToCart(id, type = 'product') {
+            const itemObj = type === 'product' ? PRODUCTS.find(p => p.id === id) : BUNDLES.find(b => b.id === id);
+            const size = selectedProductSizes[id] || itemObj.defaultSize;
+
+            const existingIndex = cart.findIndex(c => c.id === id && c.size === size);
+            if (existingIndex > -1) {
+                cart[existingIndex].quantity += 1;
+            } else {
+                cart.push({
+                    id: itemObj.id,
+                    name: itemObj.name,
+                    price: itemObj.price,
+                    image: itemObj.image,
+                    size: size,
+                    type: type,
+                    quantity: 1
+                });
+            }
+
+            updateCartUI();
+            toggleCartDrawer(true);
+        }
+
+        // Change Quantity
+        function updateQuantity(index, delta) {
+            cart[index].quantity += delta;
+            if (cart[index].quantity <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        // Remove item
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        // Update Cart Interface
+        function updateCartUI() {
+            const totalCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            document.getElementById('cart-count').innerText = totalCount;
+            document.getElementById('cart-total-price').innerText = `${totalPrice} грн`;
+
+            const container = document.getElementById('cart-items-container');
+            const checkoutBtn = document.getElementById('checkout-btn');
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12">
+                        <div class="w-16 h-16 bg-cream-100 text-gray-400 rounded-full flex items-center justify-center mx-auto mb-3">
+                            <i data-lucide="shopping-bag" class="w-8 h-8"></i>
+                        </div>
+                        <p class="text-sm text-gray-500 font-medium">Ваш кошик порожній</p>
+                        <p class="text-xs text-gray-400 mt-1">Оберіть товари або готові набори в каталозі</p>
+                    </div>
+                `;
+                checkoutBtn.disabled = true;
+            } else {
+                checkoutBtn.disabled = false;
+                container.innerHTML = cart.map((item, idx) => `
+                    <div class="flex items-center space-x-3 p-3 bg-cream-50 rounded-2xl border border-cream-200">
+                        <img src="${item.image}" alt="${item.name}" class="w-14 h-14 object-cover rounded-xl shrink-0">
+                        <div class="flex-1 min-w-0">
+                            <h4 class="font-bold text-gray-800 text-xs truncate">${item.name}</h4>
+                            <span class="text-[10px] text-gray-500 block">Розмір: <strong>${item.size}</strong></span>
+                            <span class="font-bold text-sage-700 text-xs">${item.price} грн</span>
+                        </div>
+                        <div class="flex items-center space-x-1.5 bg-white px-2 py-1 rounded-xl border border-cream-200">
+                            <button onclick="updateQuantity(${idx}, -1)" class="text-gray-500 hover:text-sage-700 font-bold px-1 text-xs">-</button>
+                            <span class="text-xs font-bold text-gray-700 px-1">${item.quantity}</span>
+                            <button onclick="updateQuantity(${idx}, 1)" class="text-gray-500 hover:text-sage-700 font-bold px-1 text-xs">+</button>
+                        </div>
+                        <button onclick="removeFromCart(${idx})" class="p-1 text-gray-400 hover:text-terracotta-600">
+                            <i data-lucide="trash-2" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+            lucide.createIcons();
+        }
+
+        // Modal Controls
+        function toggleCartDrawer(show) {
+            const drawer = document.getElementById('cart-drawer');
+            if (show) drawer.classList.remove('hidden');
+            else drawer.classList.add('hidden');
+        }
+
+        function toggleSizeGuideModal(show) {
+            const modal = document.getElementById('size-guide-modal');
+            if (show) modal.classList.remove('hidden');
+            else modal.classList.add('hidden');
+        }
+
+        function toggleCheckoutModal(show) {
+            const modal = document.getElementById('checkout-modal');
+            if (show) modal.classList.remove('hidden');
+            else modal.classList.add('hidden');
+        }
+
+        function toggleStatusModal(show) {
+            const modal = document.getElementById('status-modal');
+            if (show) modal.classList.remove('hidden');
+            else modal.classList.add('hidden');
+        }
+
+        // Open Checkout Modal
+        function openCheckoutModal() {
+            if (cart.length === 0) return;
+            toggleCartDrawer(false);
+
+            const totalPrice = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            const summaryBox = document.getElementById('checkout-summary-box');
+            
+            summaryBox.innerHTML = `
+                <div class="font-bold text-gray-800 mb-2 border-b border-cream-200 pb-1 flex justify-between">
+                    <span>Склад замовлення (${cart.length} позицій):</span>
+                    <span class="text-sage-700 font-bold">${totalPrice} грн</span>
+                </div>
+                <div class="space-y-1">
+                    ${cart.map(item => `
+                        <div class="flex justify-between text-gray-600">
+                            <span>• ${item.name} (${item.size}) x${item.quantity}</span>
+                            <span>${item.price * item.quantity} грн</span>
+                        </div>
+                    `).join('')}
+                </div>
+            `;
+
+            toggleCheckoutModal(true);
+        }
+
+        // ===== Валідація телефону та email =====
+        const PHONE_REGEX = /^\+380\d{9}$/;
+        const EMAIL_REGEX = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}$/;
+
+        // Прибирає пробіли, дужки, дефіси; підтримує 0671234567, 380671234567, +380671234567
+        function normalizePhone(raw) {
+            let v = (raw || '').replace(/[\s\-()]/g, '');
+            if (/^0\d{9}$/.test(v)) v = '+38' + v;
+            else if (/^380\d{9}$/.test(v)) v = '+' + v;
+            return v;
+        }
+
+        function setFieldError(input, errorEl, hasError) {
+            errorEl.classList.toggle('hidden', !hasError);
+            input.classList.toggle('border-red-500', hasError);
+            input.classList.toggle('border-cream-300', !hasError);
+            input.setAttribute('aria-invalid', hasError ? 'true' : 'false');
+        }
+
+        function validateContactFields() {
+            const phoneInput = document.getElementById('phone-input');
+            const emailInput = document.getElementById('email-input');
+            const phoneOk = PHONE_REGEX.test(normalizePhone(phoneInput.value));
+            const emailOk = EMAIL_REGEX.test(emailInput.value.trim());
+
+            setFieldError(phoneInput, document.getElementById('phone-error'), !phoneOk);
+            setFieldError(emailInput, document.getElementById('email-error'), !emailOk);
+
+            if (!phoneOk) { phoneInput.focus(); }
+            else if (!emailOk) { emailInput.focus(); }
+            return phoneOk && emailOk;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const phoneInput = document.getElementById('phone-input');
+            const emailInput = document.getElementById('email-input');
+            // у телефоні дозволені лише цифри, +, пробіли, дужки, дефіси
+            phoneInput.addEventListener('input', () => {
+                phoneInput.value = phoneInput.value.replace(/[^\d+\s\-()]/g, '');
+            });
+            phoneInput.addEventListener('blur', () => {
+                if (phoneInput.value.trim()) setFieldError(phoneInput, document.getElementById('phone-error'), !PHONE_REGEX.test(normalizePhone(phoneInput.value)));
+            });
+            emailInput.addEventListener('blur', () => {
+                if (emailInput.value.trim()) setFieldError(emailInput, document.getElementById('email-error'), !EMAIL_REGEX.test(emailInput.value.trim()));
+            });
+        });
+
+        // Handle Checkout Form Submission (Webhook POST)
+        async function handleCheckoutSubmit(event) {
+            event.preventDefault();
+            // === ПЕРЕВІРКА ТЕЛЕФОНУ ТА EMAIL ===
+            if (!validateContactFields()) {
+                return; // замовлення не відправляється і не зберігається
+            }
+            // ===================================
+
+            const submitBtn = document.getElementById('submit-order-btn');
+            const originalBtnText = submitBtn.innerHTML;
+            
+            // Loading State
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `
+                <svg class="animate-spin h-4 w-4 text-white mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+                <span>Відправка...</span>
+            `;
+
+            const formData = new FormData(event.target);
+            const totalSum = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+
+            const payload = {
+                orderDate: new Date().toISOString(),
+                buyer: {
+                    firstName: formData.get('firstName'),
+                    lastName: formData.get('lastName'),
+                    phone: normalizePhone(formData.get('phone')),
+                    email: (formData.get('email') || '').trim(),
+                    city: formData.get('city'),
+                    deliveryMethod: formData.get('deliveryMethod'),
+                    addressBranch: formData.get('addressBranch'),
+                    paymentMethod: formData.get('paymentMethod'),
+                    comment: formData.get('comment') || ''
+                },
+                items: cart.map(item => ({
+                    id: item.id,
+                    name: item.name,
+                    size: item.size,
+                    unitPrice: item.price,
+                    quantity: item.quantity,
+                    totalItemPrice: item.price * item.quantity,
+                    itemType: item.type
+                })),
+                totalSum: totalSum
+            };
+
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok || response.status === 200 || response.status === 201) {
+                    showStatusSuccess();
+                    cart = [];
+                    updateCartUI();
+                    event.target.reset();
+                } else {
+                    showStatusError(`Сервер повернув код помилки: ${response.status}`);
+                }
+            } catch (err) {
+                console.error('Webhook Error:', err);
+                // In test webhook environments, response might CORS block or fail if n8n test node isn't active
+                showStatusError('Не вдалося зв’язатися із сервером. Перевірте з’єднання або активність webhook.');
+            } finally {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = originalBtnText;
+                toggleCheckoutModal(false);
+            }
+        }
+
+        // Show Success Dialog
+        function showStatusSuccess() {
+            const iconContainer = document.getElementById('status-icon-container');
+            const title = document.getElementById('status-title');
+            const message = document.getElementById('status-message');
+
+            iconContainer.className = 'w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center bg-sage-100 text-sage-600';
+            iconContainer.innerHTML = '<i data-lucide="check-circle-2" class="w-8 h-8"></i>';
+
+            title.innerText = 'Дякуємо за замовлення!';
+            message.innerText = 'Ваше замовлення успішно прийнято в обробку. Наш менеджер зв\'яжеться з вами найближчим часом для підтвердження.';
+
+            lucide.createIcons();
+            toggleStatusModal(true);
+        }
+
+        // Show Error Dialog
+        function showStatusError(detailText) {
+            const iconContainer = document.getElementById('status-icon-container');
+            const title = document.getElementById('status-title');
+            const message = document.getElementById('status-message');
+
+            iconContainer.className = 'w-16 h-16 rounded-full mx-auto mb-4 flex items-center justify-center bg-terracotta-100 text-terracotta-600';
+            iconContainer.innerHTML = '<i data-lucide="alert-triangle" class="w-8 h-8"></i>';
+
+            title.innerText = 'Помилка відправки';
+            message.innerText = `${detailText}`;
+
+            lucide.createIcons();
+            toggleStatusModal(true);
+        }
+    </script>
+</body>
+</html>
