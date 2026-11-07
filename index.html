@@ -1187,6 +1187,22 @@
         }
     </script>
     
+    <style>
+  /* Піднімаємо віджет вище кнопки кошика і на комп'ютері, і на телефоні */
+  elevenlabs-convai {
+    bottom: 40px !important;
+    right: 32px !important;
+    z-index: 99 !important;
+  }
+
+  @media (max-width: 768px) {
+    elevenlabs-convai {
+      bottom: 90px !important;
+      right: 16px !important;
+    }
+  }
+</style>
+
     <elevenlabs-convai agent-id="agent_1901m6rz9bacezsamv2hc0b8tpc4"></elevenlabs-convai><script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
 
 </body>
