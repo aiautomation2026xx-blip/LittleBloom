@@ -1186,34 +1186,8 @@
             toggleStatusModal(true);
         }
     </script>
-<!-- Стиль для миттєвого зникнення віджета при відкритті кошика -->
-    <style>
-      /* Стандартне положення віджета */
-      elevenlabs-convai {
-        bottom: 40px !important;
-        right: 32px !important;
-        z-index: 99 !important;
-      }
 
-      @media (max-width: 768px) {
-        elevenlabs-convai {
-          bottom: 90px !important;
-          right: 16px !important;
-        }
-      }
-
-      /* Повністю ховаємо віджет, коли кошик відкритий */
-      body:has(#shopping-bag:not(.hidden)) elevenlabs-convai,
-      #shopping-bag:not(.hidden) ~ elevenlabs-convai,
-      .cart-open elevenlabs-convai,
-      .shopping-bag-open elevenlabs-convai {
-        display: none !important;
-      }
-    </style>
-
-    <!-- Віджет ElevenLabs -->
-    <elevenlabs-convai agent-id="agent_1901m6rz9bacezsamv2hc0b8tpc4"></elevenlabs-convai>
-    <script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
+    <elevenlabs-convai agent-id="agent_1901m6rz9bacezsamv2hc0b8tpc4"></elevenlabs-convai><script src="https://unpkg.com/@elevenlabs/convai-widget-embed" async type="text/javascript"></script>
 
 </body>
 </html>
